@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+.vscode
+.vs
+*.vcxproj.*
+*.vcxproj
+*.sln
+SimpleVector/
+x64/
+
