@@ -2,6 +2,7 @@
 #include <string>
 #include <unordered_map>
 #include <iostream>
+#include <limits>
 
 using namespace std; // namespace std 사용
 
@@ -59,7 +60,7 @@ public:
 class BookManager {
 private:
     vector<Book> books; // 책 목록 저장
-    BorrowManager bM; //대여 관리 변수
+    BorrowManager bM; //대여 관리
 public:
     // 책 추가 메서드
     void addBook(const string& title, const string& author) {
@@ -156,6 +157,15 @@ int main() {
         int choice; // 사용자의 메뉴 선택을 저장
         cin >> choice;
 
+        //숫자가 아닌 입력에 대한 예외 처리
+        if(cin.fail()){
+            cin.clear(); //입력 스트림 상태 초기화
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');//버퍼 비우기
+            cout<<"잘못된 입력 감지. 숫자만 입력해주세요."<<endl;
+            cout<<"ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ구분선ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
+            continue;
+        }
+
         if (choice == 1) {
             // 1번 선택: 책 추가
             // 사용자로부터 책 제목과 저자명을 입력받아 BookManager에 추가합니다.
@@ -215,6 +225,7 @@ int main() {
             // 메뉴에 없는 번호를 입력했을 경우 경고 메시지를 출력합니다.
             cout << "잘못된 입력입니다. 다시 시도하세요." << endl;
         }
+        cout<<"ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ구분선ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ";
     }
 
     return 0; // 프로그램 정상 종료
